@@ -32,9 +32,12 @@ func main() {
 }
 
 func echo(newline bool, sep string, args []string) error {
-	fmt.Fprint(out, strings.Join(args, sep))
+	output := strings.Join(args, sep)
+
 	if newline {
-		fmt.Fprintln(out)
+		output += "\n"
 	}
-	return nil
+
+	_, err := fmt.Fprint(out, output)
+	return err
 }
